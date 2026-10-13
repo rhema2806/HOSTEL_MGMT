@@ -1,0 +1,9 @@
+export const DEPARTMENTS = ['Computer Science', 'Information Technology', 'Electronics', 'Mechanical', 'Civil', 'Electrical', 'Biotechnology', 'Management'];
+export const MEAL_TYPES = ['breakfast', 'lunch', 'snacks', 'dinner'];
+export const COMPLAINT_CATEGORIES = ['electrical', 'plumbing', 'cleaning', 'room', 'food', 'internet', 'water', 'security', 'other'];
+export const COMPLAINT_STATUS = ['pending', 'in_progress', 'resolved', 'rejected'];
+export const PRIORITIES = ['low', 'medium', 'high', 'urgent'];
+export const BILL_STATUS = ['pending', 'partially_paid', 'paid', 'overdue'];
+export const LEAVE_STATUS = ['pending', 'approved', 'rejected', 'cancelled'];
+export const PAYMENT_METHODS = ['cash', 'upi', 'card', 'bank_transfer'];
+export const RATING_LABELS = { 1: 'Very poor', 2: 'Poor', 3: 'Average', 4: 'Good', 5: 'Excellent' };

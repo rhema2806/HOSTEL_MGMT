@@ -1,0 +1,44 @@
+{
+  "info": { "name": "Hostel and Mess Management API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:5000/api" }, { "key": "token", "value": "" }],
+  "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }] },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "url": "{{baseUrl}}/auth/login", "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@hostel.edu\",\n  \"password\": \"Admin@123\"\n}" } },
+          "event": [{ "listen": "test", "script": { "exec": ["const body = pm.response.json();", "if (body && body.data && body.data.token) { pm.collectionVariables.set('token', body.data.token); }"] } }]
+        },
+        { "name": "Current user", "request": { "method": "GET", "url": "{{baseUrl}}/auth/me" } },
+        { "name": "Change password", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "url": "{{baseUrl}}/auth/change-password", "body": { "mode": "raw", "raw": "{\n  \"currentPassword\": \"Admin@123\",\n  \"newPassword\": \"NewPassword@123\"\n}" } } }
+      ]
+    },
+    { "name": "Students", "item": [
+      { "name": "List students", "request": { "method": "GET", "url": "{{baseUrl}}/students?page=1&limit=10" } },
+      { "name": "Create student", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "url": "{{baseUrl}}/students", "body": { "mode": "raw", "raw": "{\n  \"studentId\": \"26CS999\",\n  \"name\": \"Test Student\",\n  \"email\": \"test.student@student.edu\",\n  \"gender\": \"male\",\n  \"department\": \"Computer Science\",\n  \"year\": 1\n}" } } }
+    ] },
+    { "name": "Hostels and rooms", "item": [
+      { "name": "List hostels", "request": { "method": "GET", "url": "{{baseUrl}}/hostels" } },
+      { "name": "List rooms", "request": { "method": "GET", "url": "{{baseUrl}}/rooms" } },
+      { "name": "Available beds", "request": { "method": "GET", "url": "{{baseUrl}}/beds/available" } }
+    ] },
+    { "name": "Allocations", "item": [
+      { "name": "Allocate bed", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "url": "{{baseUrl}}/allocations", "body": { "mode": "raw", "raw": "{\n  \"studentId\": \"<student id>\",\n  \"roomId\": \"<room id>\",\n  \"bedNumber\": 1\n}" } } }
+    ] },
+    { "name": "Mess", "item": [
+      { "name": "Today's menu", "request": { "method": "GET", "url": "{{baseUrl}}/menus/today" } },
+      { "name": "Mark attendance (bulk)", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "url": "{{baseUrl}}/meal-attendance/bulk", "body": { "mode": "raw", "raw": "{\n  \"mess\": \"<mess id>\",\n  \"date\": \"2026-09-29\",\n  \"mealType\": \"lunch\",\n  \"records\": [{ \"student\": \"<student id>\", \"status\": \"present\" }]\n}" } } },
+      { "name": "Generate bills", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "url": "{{baseUrl}}/mess-bills/generate", "body": { "mode": "raw", "raw": "{\n  \"mess\": \"<mess id>\",\n  \"month\": \"2026-08\",\n  \"dueDate\": \"2026-09-10\"\n}" } } }
+    ] },
+    { "name": "Complaints and leave", "item": [
+      { "name": "List complaints", "request": { "method": "GET", "url": "{{baseUrl}}/complaints" } },
+      { "name": "List leave requests", "request": { "method": "GET", "url": "{{baseUrl}}/leaves" } }
+    ] },
+    { "name": "Reports and dashboard", "item": [
+      { "name": "Dashboard", "request": { "method": "GET", "url": "{{baseUrl}}/dashboard" } },
+      { "name": "Hostel occupancy report", "request": { "method": "GET", "url": "{{baseUrl}}/reports/hostel/occupancy" } }
+    ] }
+  ]
+}

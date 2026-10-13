@@ -1,0 +1,18 @@
+module.exports = {
+  User: require('./User'),
+  Student: require('./Student'),
+  Hostel: require('./Hostel'),
+  Block: require('./Block'),
+  Room: require('./Room'),
+  RoomAllocation: require('./RoomAllocation'),
+  Mess: require('./Mess'),
+  MessMenu: require('./MessMenu'),
+  MealAttendance: require('./MealAttendance'),
+  MessBill: require('./MessBill'),
+  Payment: require('./Payment'),
+  Complaint: require('./Complaint'),
+  LeaveRequest: require('./LeaveRequest'),
+  Notice: require('./Notice'),
+  Notification: require('./Notification'),
+  MessFeedback: require('./MessFeedback'),
+};
